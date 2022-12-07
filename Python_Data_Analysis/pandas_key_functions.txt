@@ -1,0 +1,35 @@
+Example (see chapter 6, ex.2):
+nobels = pd.read_csv('nobels.csv', names=['year','discipline','nobelist'])
+
+nobels.head()
+nobels.tail()
+len(nobels)
+nobels.columns
+nobels.dtypes
+nobels.index
+nobels['discipline']
+nobels.nobelist
+nobels.discipline.values[:50]
+nobels.discipline.unique()
+nobels.nobelist.value_counts()
+# select rows by building a Boolean mask, and using it as fancy index
+nobels[nobels.discipline == 'Physics']
+# select rows by the string-expression-based query interface
+nobels.query('discipline == "Chemistry"')
+# Series.str methods perform operations on Series values as strings;
+# "contains" tests if a pattern is contained in each element;
+# so we select the rows in which the field "nobelist" contains "Curie"
+nobels[nobels.nobelist.str.contains('Curie')]
+# Build data frame from list of dictionnaries
+pd.DataFrame([{'title': 'David Bowie', 'year': 1969},
+              {'title': 'The Man Who Sold the World', 'year': 1970},
+              {'title': 'Hunky Dory', 'year': 1971}])
+# Build data frame from a disctionnary of vectors or lists
+pd.DataFrame({'title': ['David Bowie', 'The Man Who Sold the World', 'Hunky Dory',
+                        'Ziggy Stardust', 'Aladdin Sane', 'Pin Ups', 'Diamond Dogs',
+                        'Young Americans', 'Station To Station', 'Low', 'Heroes', 'Lodger'],
+              'release': ['1969-11-14', '1970-11-04', '1971-12-17', '1972-06-16',
+                          '1973-04-13', '1973-10-19', '1974-05-24', '1975-03-07',
+                          '1976-01-23', '1977-01-14', '1977-10-14', '1979-05-18']})
+# Build data frame from list of tuples
+pd.DataFrame([('Ziggy Stardust', 1), ('Aladdin Sane', 1), ('Pin Ups', 1)], columns=['title','toprank'])
